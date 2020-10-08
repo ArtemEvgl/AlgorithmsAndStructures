@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FDBA1D31-82E9-4486-ADCC-0A345EC21DBF}</ProjectGuid>
+    <ProjectGuid>{1FF3D4DE-7A85-4587-8E50-133FAB039238}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>MyLinkedList</RootNamespace>
-    <AssemblyName>MyLinkedList</AssemblyName>
+    <RootNamespace>DoublyLinkedList</RootNamespace>
+    <AssemblyName>DoublyLinkedList</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -44,7 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LinkedListNode.cs" />
-    <Compile Include="LinkedList.cs" />
+    <Compile Include="DoubleLinkedListt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
