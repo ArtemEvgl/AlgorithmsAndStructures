@@ -23,12 +23,21 @@ namespace DynamicArray
             Count = 0;
         }
 
-        private void Resize()
+        private void ResizeAdd()
         {
             int capacity = array.Length == 0 ? 4 : array.Length * 2;
             T[] newArray = new T[capacity];
 
             array.CopyTo(newArray, 0);
+            array = newArray;
+        }
+
+        private void ResizeRemove()
+        {
+            int capacity = array.Length - 1;
+            T[] newArray = new T[capacity];
+
+            Array.Copy(array, 0, newArray, 0, array.Length - 1);
             array = newArray;
         }
 
@@ -40,14 +49,14 @@ namespace DynamicArray
         public void Add(T item)
         {
             if (this.isFull())
-                this.Resize();
+                this.ResizeAdd();
             array[Count++] = item;
         }
 
         public void Insert(T item, int index)
         {
             if (this.isFull())
-                this.Resize();
+                this.ResizeAdd();
 
             Array.Copy(array, index, array, index + 1, array.Length - Count);
             array[index] = item;
@@ -62,7 +71,8 @@ namespace DynamicArray
                 Array.Copy(array, shiftStart, array, index, Count - shiftStart);
             }
             Count--;
-            array[Count] = default(T); 
+            array[Count] = default(T);
+            ResizeRemove(); 
         }
 
         public bool Remove(T item)

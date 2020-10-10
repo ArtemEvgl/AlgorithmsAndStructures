@@ -12,14 +12,23 @@ namespace Queue
         {
             Queue<String> queue = new Queue<string>();
 
-            queue.Enqueue("Hello");
-            queue.Enqueue("world");
+            queue.Enqueue("top", 3);
+            queue.Enqueue("mid", 2);
+            queue.Enqueue("low", 1);
+            queue.Enqueue("mid2", 2);
+            queue.Enqueue("top2", 3);
+            queue.Enqueue("low2", 1);
 
-            Console.WriteLine(queue.Peek());
-            Console.WriteLine(queue.Dequeue());
-            Console.WriteLine(queue.Dequeue());
+            queue.DequeueFist();
+            queue.DequeueFist();
 
-            Console.ReadKey();
+            queue.Enqueue("top3", 3);
+            foreach (var item in queue)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.ReadLine();
         }
     }
 }
