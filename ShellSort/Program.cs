@@ -17,13 +17,13 @@ namespace ShellSort
 
         static void ShellSort(int[] array)
         {
-            //расстояние между элементами, которые сравниваются
             int d = array.Length / 2;
-            while(d >= 1) {
+            while (d >= 1)
+            {
                 for (int i = d; i < array.Length; i++)
                 {
                     int j = i;
-                    while (j >= d && array[j - d] > array[j])
+                    while (j > d && array[j - d] > array[j])
                     {
                         Swap(ref array[j - d], ref array[j]);
                         j = j - d;
