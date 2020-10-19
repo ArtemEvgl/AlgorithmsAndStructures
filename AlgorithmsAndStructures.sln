@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashTable", "HashTable\Hash
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTree", "MyTree\MyTree.csproj", "{7422A4E4-49F4-4A41-9639-6852A71639B7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyAVLTree", "MyAVLTree\MyAVLTree.csproj", "{A8A5890D-F6B4-4E14-99B4-059F27390995}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +101,10 @@ Global
 		{7422A4E4-49F4-4A41-9639-6852A71639B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7422A4E4-49F4-4A41-9639-6852A71639B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7422A4E4-49F4-4A41-9639-6852A71639B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8A5890D-F6B4-4E14-99B4-059F27390995}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8A5890D-F6B4-4E14-99B4-059F27390995}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8A5890D-F6B4-4E14-99B4-059F27390995}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8A5890D-F6B4-4E14-99B4-059F27390995}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
