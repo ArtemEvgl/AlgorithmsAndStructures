@@ -46,6 +46,7 @@ namespace MyAVLTree
                     AddTo(node.Left, value);
                 }
             }
+            node.Balance(); // отрабатывает несколько раз, так как рекурсия
         }
 
         public bool Contains(T value)

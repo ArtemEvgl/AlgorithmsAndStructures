@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTree", "MyTree\MyTree.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyAVLTree", "MyAVLTree\MyAVLTree.csproj", "{A8A5890D-F6B4-4E14-99B4-059F27390995}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graph", "Graph\Graph.csproj", "{18633583-84C6-4223-81E3-7819CD06D502}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +107,10 @@ Global
 		{A8A5890D-F6B4-4E14-99B4-059F27390995}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8A5890D-F6B4-4E14-99B4-059F27390995}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8A5890D-F6B4-4E14-99B4-059F27390995}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18633583-84C6-4223-81E3-7819CD06D502}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18633583-84C6-4223-81E3-7819CD06D502}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18633583-84C6-4223-81E3-7819CD06D502}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18633583-84C6-4223-81E3-7819CD06D502}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
