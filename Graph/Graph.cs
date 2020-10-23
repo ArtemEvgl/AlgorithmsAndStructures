@@ -121,10 +121,10 @@ namespace Graph
         }
         
 
-        public static void MyWave(int[,] arr, int start, int finish)
+        public static Wave MyWave(int[,] arr, int start, int finish)
         {
             Wave wave = new Wave(start, int.MaxValue, 0);
-            Wave min = new Wave(0, 0, int.MaxValue);
+            Wave min = new Wave(start, 0, int.MaxValue);
             Queue<Wave> queue = new Queue<Wave>();
             queue.Enqueue(wave);
             while (queue.Count > 0)
@@ -132,24 +132,31 @@ namespace Graph
                 int count = queue.Count;
                 while (count > 0)
                 {
-
+                    Wave inputWave = queue.Dequeue();
+                    DoWave(arr, inputWave, finish, ref min, queue);
+                    count--;
                 }
             }
-
+            return min;
             
         }
 
-        public static void DoWave(int[,] arr, Wave wave, int finish, Wave min)
+        public static void DoWave(int[,] arr, Wave wave, int finish, ref Wave min, Queue<Wave> queue)
         {
             for (int i = 0; i < arr.GetLength(0); i++)
             {
                 if (arr[wave.Position, i] > 0 && i == finish && wave.Cost + arr[wave.Position, i] < min.Cost)
                 {
-                    min = new Wave(finish, wave.Position, wave.AddPoint(finish));
+                    wave.AddPoint(finish);
+                    wave.Cost += arr[wave.Position, i];
+                    min = wave;
                 }
-                else if (true)
+                else if (arr[wave.Position, i] > 0 && wave.Cost + arr[wave.Position, i] < min.Cost && i != wave.Previous)
                 {
-
+                    List<int> points = new List<int>(wave.Points);
+                    points.Add(i);
+                    Wave newWave = new Wave(i, wave.Position, wave.Cost + arr[wave.Position, i], points);
+                    queue.Enqueue(newWave);
                 }
             }
         }
@@ -229,6 +236,49 @@ namespace Graph
                 arr[i - 1, j + 1] = k;
                 queue.Enqueue(new KeyValuePair<int, int>(i - 1, j + 1));
             }
+        }
+
+        /// <summary>
+        /// Алгоритм Дейкстры
+        /// </summary>
+        /// <param name="start"></param>
+        /// <returns></returns>
+        public IList<double> GetShortestPath(int start)
+        {
+            List<double> distance = new List<double>();
+            bool[] visited = new bool[n];
+            for (int i = 0; i < n; i++)
+            {
+                distance.Add(double.MaxValue);
+                visited[i] = false;
+            }
+
+            distance[start] = 0;
+            int index = -1;
+            for (int i = 0; i < n; i++)
+            {
+                double min = double.MaxValue;
+                for (int j = 0; j < n; j++)
+                {
+                    if (!visited[j] && distance[j] <= min)
+                    {
+                        min = distance[j];
+                        index = j;
+                    }
+                }
+
+                visited[index] = true;
+                for (int j = 0; j < n; j++)
+                {
+                    if (!visited[n] && list[index,j] > -1
+                        && distance[index] != double.MaxValue
+                        && distance[index] + list[index,j] < distance[j])
+                    {
+                        distance[j] = distance[index] + list[index, j];
+                    }
+                }
+            }
+            return distance;
         }
     }
 }
