@@ -10,16 +10,10 @@ namespace Graph
     {
         static void Main(string[] args)
         {
-            double[,] arr = new double[,]{
-            {0,1,1,0},
-            {1,0,0,0},
-            {1,0,0,0},
-            {0,0,0,0}
-            };
-
-            Graph g = new Graph(arr);
-
-            var dict = g.GetComponents();
+            double[] numbers = {1,2,2,3,1,3,1,5};
+            
+            Graph graph = new Graph(Graph.GetMatrix(5, 4, numbers));
+            IList<int> results = graph.TopologicSort(); 
         }
     }
 }

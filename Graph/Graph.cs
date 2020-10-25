@@ -397,5 +397,15 @@ namespace Graph
             }
             return result.ToList();
         }
+
+        public static double[,] GetMatrix(int tasks, int connections, double[] numbers)
+        {
+            double[,] result = new double[tasks, tasks];
+            for (int i = 2; i <= numbers.Length; i+=2)
+            {
+                result[(int)numbers[i - 2] - 1, (int)numbers[i - 1] - 1] = 1;
+            }
+            return result;
+        }
     }
 }
