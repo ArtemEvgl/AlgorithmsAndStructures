@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -69,8 +70,9 @@ namespace Graph
             }
         }
 
-        public void DFSNoRecursive(int from)
+        public List<int> DFSNoRecursive(int from)
         {
+            List<int> result = new List<int>();
             bool[] visited = new bool[n];
             Stack<int> stack = new Stack<int>();
             stack.Push(from);
@@ -78,7 +80,7 @@ namespace Graph
             while (stack.Count > 0)
             {
                 int index = stack.Pop();
-                Console.WriteLine(index);
+                result.Add(index);
                 for (int i = 0; i < n; i++)
                 {
                     if (list[index, i] != 0 && !visited[i])
@@ -88,6 +90,7 @@ namespace Graph
                     }
                 }
             }
+            return result;
         }
 
         public double GetQuantityEdge()
@@ -279,6 +282,120 @@ namespace Graph
                 }
             }
             return distance;
+        }
+
+        /// <summary>
+        /// Алгоритм Уолшера
+        /// </summary>
+        /// <returns>Возвращает все кратчайшие пути</returns>
+        public double[,] GetAllShortestPath()
+        {
+            double[,] distances = new double[n, n];
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    distances[i, j] = list[i, j];
+                }
+            }
+            for (int k = 0; k < n; k++)
+            {
+                for (int i = 0; i < n; i++)
+                {
+                    for (int j = 0; j < n; j++)
+                    {
+                        if (distances[i,k] != 0 && distances[k,j] != 0 && i != j)
+                        {
+                            if (distances[i, k] + distances[k, j] < distances[i, j] || distances[i, j] == 0)
+                            {
+                                distances[i, j] = distances[i, k] + distances[k, j];
+                            }
+                        }
+                    }
+                }
+            }
+            return distances;
+        }
+
+        public IDictionary<int, IList<int>> GetComponents()
+        {
+            int color = 1;
+            Dictionary<int, IList<int>> table = new Dictionary<int, IList<int>>();
+
+            int count = n;
+            bool[] visited = new bool[n];
+            int[] colors = new int[n];
+
+            while (count > 0)
+            {
+                int vertex = 0;
+                while (visited[vertex]) vertex++;
+
+                var vertices = DFSNoRecursive(vertex);
+                foreach (var item in vertices)
+                {
+                    visited[item] = true;
+                    colors[item] = 1;
+                }
+                count -= vertices.Count;
+
+                table.Add(color, vertices);
+                color++;
+            }
+            return table;
+        }
+
+        enum Colors
+        {
+            WHITE, BLACK, GREY
+        };
+
+        public IList<int> TopologicSort()
+        {
+            Stack<int> result = new Stack<int>();
+            Colors[] colors = new Colors[n];
+            Stack<int> path = new Stack<int>();
+
+            for (int i = 0; i < n; i++)
+            {
+                int vertex = i;
+                int saved = i;
+                if (path.Count > 0)
+                {
+                    i--;
+                    vertex = path.Pop();
+                    saved = vertex;
+                }
+
+                if (colors[vertex] == Colors.BLACK)
+                {
+                    continue;
+                }
+
+                colors[vertex] = Colors.GREY;
+                path.Push(vertex);
+                for (int j = 0; j < n; j++)
+                {
+                    if (list[vertex,j] != 0 && colors[j] != Colors.BLACK)
+                    {
+                        if (colors[j] == Colors.GREY)
+                        {
+                            return null;
+                        }
+
+                        vertex = j;
+                        path.Push(vertex);
+                        break;
+                    }
+                }
+                if (vertex == saved)
+                {
+                    colors[vertex] = Colors.BLACK;
+                    result.Push(vertex);
+                    path.Pop();
+                }
+            }
+            return result.ToList();
         }
     }
 }
